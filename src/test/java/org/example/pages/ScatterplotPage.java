@@ -44,11 +44,11 @@ public class ScatterplotPage extends BasePage {
     }
 
 
-    public List <WebElement> getListOfXAxes() {
+    public List <WebElement> getListOfValuesXAxis() {
         List <WebElement> xAxes = Browser.getDriver().findElements(By.xpath("//*[@class='x axis']/*[@class]/*[2]"));
         return xAxes;
     }
-    public List <WebElement> getListOfYAxes() {
+    public List <WebElement> getListOfValuesYAxis() {
         List <WebElement> yAxes = Browser.getDriver().findElements(By.xpath("//*[@class='y axis']/*[@class]/*[2]"));
         return yAxes;
     }
