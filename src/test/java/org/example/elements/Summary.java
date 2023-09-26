@@ -20,10 +20,10 @@ public class Summary {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return summaryTable;
     }
-    public WebElement getSummaryElement(String xpath) {
-        WebElement summaryElement = new WebDriverWait(Browser.getDriver(), WAIT_TIMEOUT)
+    public WebElement getElement(String xpath) {
+        WebElement Element = new WebDriverWait(Browser.getDriver(), WAIT_TIMEOUT)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-        return summaryElement;
+        return Element;
     }
 
 }

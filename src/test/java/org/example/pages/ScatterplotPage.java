@@ -1,17 +1,17 @@
 package org.example.pages;
 
+import org.apache.log4j.Logger;
 import org.example.enums.TopMenuEnum;
 import org.example.utility.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 
 public class ScatterplotPage extends BasePage {
+    private Logger log = Logger.getLogger(this.getClass());
     private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(10);
     By attributeXLocator = By.xpath("//div[contains(text(),'X ')]/following-sibling::deltix-ng-autocomplete");
     private static final String ITEM_DROPDOWN_PATTERN = "//li[contains(@title,'%s')]";
@@ -22,19 +22,29 @@ public class ScatterplotPage extends BasePage {
 
     @Override
     public void openPage() {
-        topMenu.clickOnMenuItem(TopMenuEnum.Scatter);
+        mainMenu.clickOnMenuItem(TopMenuEnum.Scatter);
+        log.info("The tab Scatter-plot is successfully opened");
+    }
+
+    public String getNameXAxis(){
+       return Browser.getDriver().findElement(By.xpath("//*[@class='scatter-plot-x-label']")).getText();
+    }
+    public String getNameYAxis(){
+        return Browser.getDriver().findElement(By.xpath("//*[@class='scatter-plot-y-label']")).getText();
     }
 
     public void setXAttribute(String xAttribute) throws Exception {
         Browser.getDriver().findElement(attributeXLocator).click();
         String xpathPointDropdown = String.format(ITEM_DROPDOWN_PATTERN, xAttribute);
         Browser.getDriver().findElement(By.xpath(xpathPointDropdown)).click();
+        //Thread.sleep(1000);
     }
 
     public void setYAttribute(String yAttribute) throws Exception {
         Browser.getDriver().findElement(attributeYLocator).click();
         String xpathPointDropdown = String.format(ITEM_DROPDOWN_PATTERN, yAttribute);
         Browser.getDriver().findElement(By.xpath(xpathPointDropdown)).click();
+      //  Thread.sleep(1000);
     }
 
     public void setIntervals(String intervals) throws Exception {

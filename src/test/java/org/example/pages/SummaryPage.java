@@ -1,25 +1,27 @@
 package org.example.pages;
 
+import org.apache.log4j.Logger;
 import org.example.enums.TablesSummaryEnum;
 import org.example.enums.TopMenuEnum;
 
 
-
 public class SummaryPage extends BasePage {
+    private Logger log = Logger.getLogger(this.getClass());
 
 
     public static boolean isElementPresent(String xpath) {
-        summaryTables.getSummaryElement(xpath).isDisplayed();
+        summaryTables.getElement(xpath).isDisplayed();
         return true;
     }
 
     @Override
     public void openPage() {
-        topMenu.clickOnMenuItem(TopMenuEnum.Summary);
+        mainMenu.clickOnMenuItem(TopMenuEnum.Summary);
+        log.info("The tab Summary is successfully opened");
     }
 
     public boolean isItemMenuPresent(TopMenuEnum topMenuEnum) {
-        topMenu.isItemMenuExist(topMenuEnum);
+        mainMenu.isItemMenuExist(topMenuEnum);
         return true;
     }
 

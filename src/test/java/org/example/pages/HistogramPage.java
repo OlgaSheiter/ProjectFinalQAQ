@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.apache.log4j.Logger;
 import org.example.enums.TopMenuEnum;
 import org.example.utility.Browser;
 import org.openqa.selenium.By;
@@ -14,6 +15,7 @@ import java.util.List;
 
 
 public class HistogramPage extends BasePage {
+    private Logger log = Logger.getLogger(this.getClass());
 
     By toolTipLocator = By.xpath("//*[@class='tooltip']");
     By intervalLocator =By.xpath("//div/app-intervals-count-autocomplete-control");
@@ -23,7 +25,8 @@ public class HistogramPage extends BasePage {
 
     @Override
     public void openPage() {
-        topMenu.clickOnMenuItem(TopMenuEnum.Histogram);
+        mainMenu.clickOnMenuItem(TopMenuEnum.Histogram);
+        log.info("The tab Histogram is successfully opened");
     }
 
     public void moveToContainer(Integer i){

@@ -1,23 +1,17 @@
 package org.example.tests;
 
-import org.example.elements.TopMenu;
+import org.example.elements.MainMenu;
 import org.example.enums.TopMenuEnum;
-import org.example.pages.GridPage;
-import org.example.pages.LoginPage;
 import org.example.pages.SummaryPage;
 import org.example.utility.Browser;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.util.List;
-
-public class SummaryPageTests extends BaseTest {
+@Listeners(ResultListenerTests.class)
+public class SummaryTests extends BaseTest {
     private String buttonSettingsLocator = "//*[@title='Settings']";
 
     SummaryPage summaryPage;
@@ -30,7 +24,7 @@ public class SummaryPageTests extends BaseTest {
 
     @Test(groups = "TC01")
     public void topMenuPresentTest() throws Exception {
-        TopMenu topMenu = new TopMenu();
+        MainMenu mainMenu = new MainMenu();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(summaryPage.isItemMenuPresent(TopMenuEnum.Summary), "The menu Summary is absent");
         softAssert.assertTrue(summaryPage.isItemMenuPresent(TopMenuEnum.Grid), "The menu Grid is absent");

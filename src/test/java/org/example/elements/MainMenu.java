@@ -8,10 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class TopMenu {
+public class MainMenu {
 
     private static final String MENU_ITEM_PATTERN = "//div[@class='app-title' and contains(text(),'%s')]";
-    private static Duration WAIT_TIMEOUT = Duration.ofSeconds(1);
+    private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(5);
 
 
     private WebElement getMenuElement(TopMenuEnum topMenuEnum) {
@@ -26,5 +26,10 @@ public class TopMenu {
     }
     public boolean isItemMenuExist(TopMenuEnum topMenuEnum) {
         return getMenuElement(topMenuEnum).isDisplayed();
+    }
+
+    public void waitElementIsDisplayed (By elementLocator){
+        WebDriverWait wait = new WebDriverWait(Browser.getDriver(),WAIT_TIMEOUT);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
     }
 }

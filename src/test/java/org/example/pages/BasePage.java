@@ -1,17 +1,15 @@
 package org.example.pages;
 
-import org.example.elements.GridChart;
 import org.example.elements.Summary;
-import org.example.elements.TopMenu;
+import org.example.elements.MainMenu;
 
 
 
 public abstract class BasePage {
 
     public abstract void openPage();
-    TopMenu topMenu = new TopMenu();
+    MainMenu mainMenu = new MainMenu();
     static Summary summaryTables = new Summary();
 
-    GridChart gridChart = new GridChart();
 
 }

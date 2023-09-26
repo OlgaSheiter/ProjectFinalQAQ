@@ -1,31 +1,43 @@
 package org.example.utility;
 
+import org.example.enums.BrowserType;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
     private static WebDriver driver;
+    private static BrowserType browserType;
 
-    private static Properties properties;
+    private Browser() {
+
+    }
+
+    static Properties properties;
 
     public static void initDriver() {
         try {
             properties = new Properties();
             properties.load(new FileInputStream("src/test/resources/project.properties"));
-            if (properties.getProperty("browser").equals("chrome")) {
-                System.setProperty("webdriver.chrome.driver", properties.getProperty("driverLocation"));
-                driver = new ChromeDriver();
-            }
+            Browser.browserType = BrowserType.valueOf(properties.getProperty("browser"));
+            driver = BrowserFactory.createDriver(browserType);
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             driver.manage().window().maximize();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+        }
     }
+
+
     public static Properties getProjectProperties() {
         return properties;
     }
@@ -42,6 +54,23 @@ public class Browser {
             driver.close();
             driver = null;
         }
+    }
+
+    public static void saveScreenShot() throws IOException {
+
+        File screenShots = new File("./testsFailure/screenshots");
+
+        if (!screenShots.exists()) {
+            screenShots.mkdirs();
+        }
+        Date date = new Date();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy-h-mm-ss-SS--a");
+        String formattedDate = simpleDateFormat.format(date);
+        String fileName = browserType.name() + "_" + formattedDate + "screenshot.png";
+
+        byte[] scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        Files.write(new File("./testsFailure/screenshots/" + fileName).toPath(), scrFile, StandardOpenOption.CREATE);
     }
 
 }
