@@ -11,6 +11,7 @@ import java.util.List;
 
 
 public class ScatterplotPage extends BasePage {
+
     private Logger log = Logger.getLogger(this.getClass());
     private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(10);
     By attributeXLocator = By.xpath("//div[contains(text(),'X ')]/following-sibling::deltix-ng-autocomplete");
@@ -37,14 +38,14 @@ public class ScatterplotPage extends BasePage {
         Browser.getDriver().findElement(attributeXLocator).click();
         String xpathPointDropdown = String.format(ITEM_DROPDOWN_PATTERN, xAttribute);
         Browser.getDriver().findElement(By.xpath(xpathPointDropdown)).click();
-        //Thread.sleep(1000);
+        Thread.sleep(1000);
     }
 
     public void setYAttribute(String yAttribute) throws Exception {
         Browser.getDriver().findElement(attributeYLocator).click();
         String xpathPointDropdown = String.format(ITEM_DROPDOWN_PATTERN, yAttribute);
         Browser.getDriver().findElement(By.xpath(xpathPointDropdown)).click();
-      //  Thread.sleep(1000);
+        Thread.sleep(1000);
     }
 
     public void setIntervals(String intervals) throws Exception {

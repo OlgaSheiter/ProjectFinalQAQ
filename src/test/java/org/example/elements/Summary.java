@@ -16,14 +16,14 @@ public class Summary {
 
     public WebElement getTable(TablesSummaryEnum tablesSummaryEnum) {
         String xpath = String.format(MENU_TABLE_PATTERN, tablesSummaryEnum.getValue());
-        WebElement summaryTable = new WebDriverWait(Browser.getDriver(), WAIT_TIMEOUT)
+        WebElement summaryTable = new WebDriverWait(Browser.getDriver(), 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return summaryTable;
     }
     public WebElement getElement(String xpath) {
-        WebElement Element = new WebDriverWait(Browser.getDriver(), WAIT_TIMEOUT)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-        return Element;
+        WebElement element = new WebDriverWait(Browser.getDriver(), 5)
+               .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+        return element;
     }
 
 }

@@ -16,7 +16,7 @@ public class MainMenu {
 
     private WebElement getMenuElement(TopMenuEnum topMenuEnum) {
         String xpath = String.format(MENU_ITEM_PATTERN, topMenuEnum.getValue());
-        WebElement menuItem = new WebDriverWait(Browser.getDriver(), WAIT_TIMEOUT)
+        WebElement menuItem = new WebDriverWait(Browser.getDriver(), 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return menuItem;
     }
@@ -28,8 +28,8 @@ public class MainMenu {
         return getMenuElement(topMenuEnum).isDisplayed();
     }
 
-    public void waitElementIsDisplayed (By elementLocator){
-        WebDriverWait wait = new WebDriverWait(Browser.getDriver(),WAIT_TIMEOUT);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+   public void waitElementIsDisplayed (By elementLocator){
+      WebDriverWait wait = new WebDriverWait(Browser.getDriver(),5);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
     }
 }

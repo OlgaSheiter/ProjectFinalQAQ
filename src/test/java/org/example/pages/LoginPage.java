@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
         Browser.getDriver().findElement(By.xpath("//input[@formcontrolname='username']")).sendKeys(getProjectProperties().getProperty("userName"));
         Browser.getDriver().findElement(By.xpath("//input[@formcontrolname='password']")).sendKeys(getProjectProperties().getProperty("userPassword"));
         Browser.getDriver().findElement(By.xpath("//button")).click();
-        log.info("The user has successfully logged in");
+        log.info("The user"+getProjectProperties().getProperty("userName")+" has successfully logged in");
     }
 
 }
