@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="FinalProject" verbose="1">
+    <listeners>
+        <listener class-name="org.example.tests.ResultListenerTests"></listener>
+    </listeners>
+    <test name="Tests_GridAndChartPage" >
+        <classes>
+            <class name="org.example.tests.GridAndChartTests"></class>
+        </classes>
+    </test>
+    <test name="Tests_HistogramPage" >
+        <classes>
+            <class name="org.example.tests.HistogramTests"></class>
+        </classes>
+    </test>
+    <test name="Tests_ScatterplotPage" >
+        <classes>
+            <class name="org.example.tests.ScatterplotTests"></class>
+        </classes>
+    </test>
+    <test name="Tests_SummaryPage" >
+        <classes>
+            <class name="org.example.tests.SummaryTests"></class>
+        </classes>
+    </test>
+</suite>
